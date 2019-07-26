@@ -1,0 +1,102 @@
+when generating the csv with faker data, could gen 10M but not 50M using nested for loops;
+trying hard coded 5 isntead of second loop
+
+
+generates 10M csv with faker in 22s
+what happens when we run that function 5 times instead
+inserting 10M takes 60s
+repeat 5 times to get to 50M;
+inserting 10000000 rows (43.51 sec);
+
+//combined 5 csvs
+//inserting 50M csv 
+Query OK, 10000000 rows affected, 65535 warnings (9 min 34.15 sec)
+Records: 50000000  Deleted: 0  Skipped: 40000000  Warnings: 40000000
+//with incorrect ids// redoing with new incremented ids
+
+
+//with corrected increment in id
+LOAD DATA LOCAL INFILE '/Users/jbishow/Documents/Javascripts/Hack Reactor/System Design Capstone/component-cp/database/csv/data.csv' INTO TABLE chairs FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 ROWS;
+Query OK, 50000000 rows affected (5 min 12.99 sec)
+Records: 50000000  Deleted: 0  Skipped: 0  Warnings: 0
+
+select count(*) from chairs;
++----------+
+| count(*) |
++----------+
+| 50000000 |
++----------+
+1 row in set (9.42 sec)
+
+//query a single item takes 17s.
+select * from chairs where collection_id = 9999999;
++----------+---------------+---------------+-----------------------------------------+-----------+-----------+---------------+---------+
+| id       | name          | collection_id | url                                     | max_price | min_price | limited_offer | on_sale |
++----------+---------------+---------------+-----------------------------------------+-----------+-----------+---------------+---------+
+| 10000000 | sunt 1        |       9999999 | http://lorempixel.com/640/480/transport |       854 |       670 |             1 |       1 |
+| 20000000 | consequatur 2 |       9999999 | http://lorempixel.com/640/480/cats      |       441 |       415 |             1 |       1 |
+| 30000000 | asperiores 3  |       9999999 | http://lorempixel.com/640/480/food      |       979 |       147 |             1 |       1 |
+| 40000000 | atque 4       |       9999999 | http://lorempixel.com/640/480/people    |       496 |       976 |             1 |       1 |
+| 50000000 | ut 5          |       9999999 | http://lorempixel.com/640/480/animals   |       824 |       572 |             1 |       1 |
++----------+---------------+---------------+-----------------------------------------+-----------+-----------+---------------+---------+
+5 rows in set (16.91 sec)
+
+
+//end of day July 24
+//30sec to generate each csv (10M entries) times 5
+//5sec to combine into one 50M csv;
+//4 minutes to load 50M into database
+  mysql> LOAD DATA LOCAL INFILE '/Users/jbishow/Documents/Javascripts/Hack Reactor/System Design Capstone/component-cp/database/csv/data.csv' INTO TABLE chairs FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 ROWS;
+  Query OK, 50000000 rows affected (4 min 8.55 sec)
+  Records: 50000000  Deleted: 0  Skipped: 0  Warnings: 0
+//16.67sec to return by collection_id with small id
+  mysql> select * from chairs where collection_id = 999;
+  +----------+------------------------------------+---------------+-----------------------------------------+-----------+-----------+---------------+---------+
+  | id       | name                               | collection_id | url                                     | max_price | min_price | limited_offer | on_sale |
+  +----------+------------------------------------+---------------+-----------------------------------------+-----------+-----------+---------------+---------+
+  |      999 | soluta-consectetur-voluptatem 999  |           999 | http://lorempixel.com/640/480/fashion   |       983 |        70 |             1 |       1 |
+  | 10000999 | velit-aut-similique 999            |           999 | http://lorempixel.com/640/480/sports    |       486 |       455 |             1 |       1 |
+  | 20000999 | occaecati-nihil-exercitationem 999 |           999 | http://lorempixel.com/640/480/business  |       478 |       923 |             1 |       1 |
+  | 30000999 | atque-excepturi-cupiditate 999     |           999 | http://lorempixel.com/640/480/abstract  |       438 |       208 |             1 |       1 |
+  | 40000999 | eligendi-et-laboriosam 999         |           999 | http://lorempixel.com/640/480/transport |       451 |       629 |             1 |       1 |
+  +----------+------------------------------------+---------------+-----------------------------------------+-----------+-----------+---------------+---------+
+  5 rows in set (16.67 sec)  
+//20.5sec to return by collection_id with max id
+  mysql> select * from chairs where collection_id = 49999999;
+  +----------+---------------------------+---------------+-----------------------------------------+-----------+-----------+---------------+---------+
+  | id       | name                      | collection_id | url                                     | max_price | min_price | limited_offer | on_sale |
+  +----------+---------------------------+---------------+-----------------------------------------+-----------+-----------+---------------+---------+
+  |  9999999 | enim-maxime-quia 9999999  |       9999999 | http://lorempixel.com/640/480/abstract  |       805 |       107 |             1 |       1 |
+  | 19999999 | est-harum-est 9999999     |       9999999 | http://lorempixel.com/640/480/nightlife |       974 |        89 |             1 |       1 |
+  | 29999999 | omnis-omnis-dolor 9999999 |       9999999 | http://lorempixel.com/640/480/people    |       386 |       336 |             1 |       1 |
+  | 39999999 | similique-at-est 9999999  |       9999999 | http://lorempixel.com/640/480/technics  |       924 |       927 |             1 |       1 |
+  | 49999999 | totam-ipsum-unde 9999999  |       9999999 | http://lorempixel.com/640/480/city      |       998 |       246 |             1 |       1 |
+  +----------+---------------------------+---------------+-----------------------------------------+-----------+-----------+---------------+---------+
+  5 rows in set (20.54 sec)
+
+//query by name from early entry
+mysql> select * from chairs where name = "velit-aut-similique 999";
++----------+-------------------------+---------------+--------------------------------------+-----------+-----------+---------------+---------+
+| id       | name                    | collection_id | url                                  | max_price | min_price | limited_offer | on_sale |
++----------+-------------------------+---------------+--------------------------------------+-----------+-----------+---------------+---------+
+| 10000999 | velit-aut-similique 999 |           999 | http://lorempixel.com/640/480/sports |       486 |       455 |             1 |       1 |
++----------+-------------------------+---------------+--------------------------------------+-----------+-----------+---------------+---------+
+1 row in set (17.80 sec)
+
+//query by name from late entry
+mysql> select * from chairs where name = "totam-ipsum-unde 9999999";
++----------+--------------------------+---------------+------------------------------------+-----------+-----------+---------------+---------+
+| id       | name                     | collection_id | url                                | max_price | min_price | limited_offer | on_sale |
++----------+--------------------------+---------------+------------------------------------+-----------+-----------+---------------+---------+
+| 49999999 | totam-ipsum-unde 9999999 |       9999999 | http://lorempixel.com/640/480/city |       998 |       246 |             1 |       1 |
++----------+--------------------------+---------------+------------------------------------+-----------+-----------+---------------+---------+
+1 row in set (17.95 sec)
+
+//july 25 measure csv generation with npm script with 16GB memmory
+node --max-old-space-size=16384 database/csvgen1.js & node --max-old-space-size=16384 database/csvgen2.js & node --max-old-space-size=16384 database/csvgen3.js & node --max-old-space-size=16384 database/csvgen4.js & node --max-old-space-size=16384 database/csvgen5.js,
+in parallel makes 5 10M large csv in 8m33s
+
+node --max-old-space-size=16384 database/csvgen1.js; node --max-old-space-size=16384 database/csvgen2.js; node --max-old-space-size=16384 database/csvgen3.js; node --max-old-space-size=16384 database/csvgen4.js; node --max-old-space-size=16384 database/csvgen5.js",
+in sequence makes 5 10M large csv in 8m45s
+
+seeds database in 3 min 41.66 sec
