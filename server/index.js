@@ -14,7 +14,6 @@ app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
 
-// app.options('/products-cp', cors());
 app.get('/products-cp/', cors(), (req, res) => { // grab list of chairs
 	db.getChairs()
 		.then((records) => {
@@ -27,18 +26,43 @@ app.get('/products-cp/', cors(), (req, res) => { // grab list of chairs
 })
 
 
-app.get('/products-cp/:id', cors(),(req, res) => { // grab chair by ID
+app.get('/products-id/:id', cors(),(req, res) => { // grab chair by ID 17sec
 	var { id } = req.params;
-	console.log(`/products-cp/${id}`, JSON.stringify(id));
 	db.getChairByCollectionID(id)
 		.then((data) => {
-			var record = JSON.stringify(data);
-			res.status(200).send(record);
+			res.status(200).send(data);
 		})
-	.catch( (err) => {
+		.catch( (err) => {
 		console.error(err);
 		res.status(404).send('Error retrieving data.');
 	});
 })
+
+app.get('/products-raw/:id', cors(), (req, res) => { // grab chair by ID 5ms
+	var { id } = req.params;
+	db.getChairByRawId(id)
+		.then((data) => {
+			res.status(200).send(data[0]);
+		})
+		.catch((err) => {
+			console.error(err);
+			res.status(404).send('Error retrieving data.');
+		});
+})
+
+app.get('/products-idraw/:id', cors(), (req, res) => { // grab chair by ID 5ms
+	var { id } = req.params;
+	db.getChairByIdRaw(id)
+		.then((data) => {
+			res.status(200).send(data[0]);
+		})
+		.catch((err) => {
+			console.error(err);
+			res.status(404).send('Error retrieving data.');
+		});
+})
+
+
+//todo create rest of crud methods
 
 app.listen(port, () => console.log(`Listening to port ${port}`))

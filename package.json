@@ -4,8 +4,11 @@
   "description": "Related Searches and Footer module",
   "main": "./server/index.js",
   "scripts": {
-    "start": "node server/index.js",
-    "seed": "node database/seed.js",
+    "start": "nodemon server/index.js",
+    "generatecsv": "node --max-old-space-size=16384 database/csvgen/csvgen1.js; node --max-old-space-size=16384 database/csvgen/csvgen2.js; node --max-old-space-size=16384 database/csvgen/csvgen3.js; node --max-old-space-size=16384 database/csvgen/csvgen4.js; node --max-old-space-size=16384 database/csvgen/csvgen5.js",
+    "cat": "cat database/csv/*.csv >database/csv/data.csv",
+    "insertcsv": "node database/insertCsv.js",
+    "seed": "npm run generatecsv; npm run cat; npm run insertcsv",
     "build": "webpack -d --watch"
   },
   "repository": {
@@ -31,8 +34,10 @@
     "axios": "^0.19.0",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
+    "csv-write-stream": "^2.0.0",
     "diff": "^4.0.1",
     "express": "^4.17.1",
+    "faker": "^4.1.0",
     "morgan": "^1.9.1",
     "mysql": "^2.17.1",
     "mysql2": "^1.6.5",
