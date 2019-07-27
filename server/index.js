@@ -65,7 +65,4 @@ app.get('/products-idraw/:id', cors(), (req, res) => { // grab chair by ID 5ms
 
 //todo create rest of crud methods
 
-
-
-
 app.listen(port, () => console.log(`Listening to port ${port}`))
