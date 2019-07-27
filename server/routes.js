@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const sqlControllers = require('./sqlController');
+const mongoControllers = require('./monogoController')
 
 router
   .route('/collection/sql/:id')
@@ -7,6 +8,6 @@ router
 
 router
   .route('/collection/mongo/:id')
-  .get(sqlControllers.get)
+  .get(mongoControllers.get)
 
 module.exports = router;
