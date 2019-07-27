@@ -5,7 +5,7 @@ const get = (req, res) => { // grab chair by indexed collection_id
   var { id } = req.params;
   dbHelpers.getChairById(id)
     .then((data) => {
-      res.status(200).send(data[0]);
+      res.status(200).send(data);
     })
     .catch((err) => {
       console.error(err);
