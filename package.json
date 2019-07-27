@@ -5,8 +5,10 @@
   "main": "./server/index.js",
   "scripts": {
     "start": "nodemon server/index.js",
-    "generate:parallel": "node --max-old-space-size=8192 database/csvgen/csvgen1.js & node --max-old-space-size=8192 database/csvgen/csvgen2.js & node --max-old-space-size=8192 database/csvgen/csvgen3.js & node --max-old-space-size=8192 database/csvgen/csvgen4.js & node --max-old-space-size=8192 database/csvgen/csvgen5.js",
-    "generate:squence": "node --max-old-space-size=16384 database/csvgen/csvgen1.js; node --max-old-space-size=16384 database/csvgen/csvgen2.js; node --max-old-space-size=16384 database/csvgen/csvgen3.js; node --max-old-space-size=16384 database/csvgen/csvgen4.js; node --max-old-space-size=16384 database/csvgen/csvgen5.js",
+    "generatecsv": "node --max-old-space-size=16384 database/csvgen/csvgen1.js; node --max-old-space-size=16384 database/csvgen/csvgen2.js; node --max-old-space-size=16384 database/csvgen/csvgen3.js; node --max-old-space-size=16384 database/csvgen/csvgen4.js; node --max-old-space-size=16384 database/csvgen/csvgen5.js",
+    "cat": "cat database/csv/*.csv >database/csv/data.csv",
+    "insertcsv": "node database/insertCsv.js",
+    "seed": "npm run generatecsv; npm run cat; npm run insertcsv",
     "build": "webpack -d --watch"
   },
   "repository": {
