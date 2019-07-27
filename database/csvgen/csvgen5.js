@@ -10,7 +10,7 @@ const csvGen = (x) => {
   for (let i = 0; i < 10000000; i++) {
     writer.write({
       id: (i+1)+((x-1)*10000000),
-      name: `${faker.lorem.slug()} ${i+1}`,
+      name: `${faker.lorem.slug()} ${faker.commerce.product()}`,
       collection_id: i+1,
       url: faker.random.image(),
       max_price: faker.commerce.price(),
