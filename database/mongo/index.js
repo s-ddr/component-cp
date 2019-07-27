@@ -6,7 +6,7 @@ mongoose.connect('mongodb://localhost/collection', { useNewUrlParser: true })
 const chairSchema = mongoose.Schema(
   {
     name: { type: String, required: true },
-    collection_id: { type: Number, required: true },
+    collection_id: { type: Number, required: true , index: true},
     url: {type: String, required: true },
     max_price: {type: Number, required: true },
     min_price: {type: Number, required: true},
