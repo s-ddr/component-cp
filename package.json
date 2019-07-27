@@ -9,7 +9,10 @@
     "cat": "cat database/csv/*.csv >database/csv/data.csv",
     "create-data": "npm run csvgen; npm run cat",
     "seed-mysql": "node database/insertCsvSql.js",
+    "seed-mongo": "mongoimport --db collection --collection chairs --type csv --headerline --file database/csv/data.csv",
+    "seed-mongo:time": "time npm run seed-mongo",
     "fullseed-mysql": "npm run create-data; npm run seed-mysql",
+    "fullseed-mongo": "npm run create-data; npm run seed-mongo",
     "build": "webpack -d --watch"
   },
   "repository": {
