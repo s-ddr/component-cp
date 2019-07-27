@@ -29,9 +29,15 @@ getChairByRawId = (id) => {
   return connection.query(queryStr)
 }
 
+getChairByIdRaw = (id) => {
+  const queryStr = `SELECT * FROM chairs where collection_id=${+id}`
+  return connection.query(queryStr)
+}
+
 module.exports = {
   getChairs,
   getChairByCollectionID,
   getChairByName,
-  getChairByRawId
+  getChairByRawId,
+  getChairByIdRaw
 }
