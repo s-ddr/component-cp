@@ -30,8 +30,7 @@ app.get('/products-id/:id', cors(),(req, res) => { // grab chair by ID 17sec
 	var { id } = req.params;
 	db.getChairByCollectionID(id)
 		.then((data) => {
-			var record = JSON.stringify(data);
-			res.status(200).send(record);
+			res.status(200).send(data);
 		})
 		.catch( (err) => {
 		console.error(err);
@@ -39,12 +38,22 @@ app.get('/products-id/:id', cors(),(req, res) => { // grab chair by ID 17sec
 	});
 })
 
-
-app.get('/products-cp/:id', cors(), (req, res) => { // grab chair by ID 5ms
+app.get('/products-raw/:id', cors(), (req, res) => { // grab chair by ID 5ms
 	var { id } = req.params;
 	db.getChairByRawId(id)
 		.then((data) => {
-			var record = JSON.stringify(data);
+			res.status(200).send(data[0]);
+		})
+		.catch((err) => {
+			console.error(err);
+			res.status(404).send('Error retrieving data.');
+		});
+})
+
+app.get('/products-idraw/:id', cors(), (req, res) => { // grab chair by ID 5ms
+	var { id } = req.params;
+	db.getChairByIdRaw(id)
+		.then((data) => {
 			res.status(200).send(data[0]);
 		})
 		.catch((err) => {
