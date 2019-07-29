@@ -15,3 +15,5 @@ router
 // router.route('/products-cp/:id').get(mongoControllers.get)
 
 module.exports = router;
+
+//todo create rest of crud methods

@@ -16,6 +16,4 @@ app.use(express.static(path.join(__dirname, '../client/dist')));
 
 app.use('/', cors(), router);
 
-//todo create rest of crud methods
-
 app.listen(port, () => console.log(`Listening to port ${port}`))
