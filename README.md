@@ -1,39 +1,21 @@
-# Project Name
+# Reccomendations Carousel (component-cp)
 
-> Project description
+![Image of application](https://i.imgur.com/tHZjtfQ.png)
 
 ## Related Projects
 
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
+  - https://github.com/s-ddr
+  - https://github.com/s-ddr/component-jj-erik
+  - https://github.com/s-ddr/component-sj
+  - https://github.com/s-ddr/component-jj-wayne
 
-## Table of Contents
-
-1. [Usage](#Usage)
-1. [Requirements](#requirements)
-1. [Development](#development)
-
-## Usage
-
-> Some usage instructions
-
-## Requirements
-
-An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
-
-- Node 6.13.0
-- etc
-
-## Development
-
-### Installing Dependencies
-
-From within the root directory:
-
-```sh
-npm install -g webpack
-npm install
+## Setup
 ```
+$ git clone https://github.com/s-ddr/component-cp
+$ cd component-cp
+$ npm install
+$ npm run build
+$ npm start
 
+use appropriate npm script to create data, load into db, and index db
+```
