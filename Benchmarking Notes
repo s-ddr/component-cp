@@ -123,4 +123,20 @@ testing queries after indexing
     GET /products-raw/9999998 200 2.644 ms - 919
 
 
+//July 27
+instantiate a mongo db with csv
+mongoimport --db collection --collection chairs --type csv --headerline --file database/csv/data.csv
+start time 2019-07-27T14:13:36.767-0700
+end time   2019-07-27T14:27:43.408-0700
+seed time  14min6.641seconds
 
+started by including index in mongoose schema creation,
+queries by collection_id take 1ms for late entries and 0ms for early ones.
+  > db.chairs.find({collection_id:10000000}).pretty().explain("executionStats")
+
+//July 28
+had trouble installing artillery globally (or at all)
+solution https://github.com/artilleryio/artillery/issues/548
+
+initial artillery tests
+artillery quick --count 10 -n 20 http://localhost:3002/collection/mongo/10

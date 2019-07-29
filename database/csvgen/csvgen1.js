@@ -2,7 +2,6 @@ const fs = require('fs');
 const csvWriter = require('csv-write-stream');
 const faker = require('faker');
 var writer = csvWriter();
-// var writer = csvWriter({ sendHeaders: false });
 
 const csvGen = (x) => {
   const fileStr = `database/csv/data${x}.csv`
@@ -20,40 +19,7 @@ const csvGen = (x) => {
     });
   }
   writer.end()
-  console.log('done generating csv');
+  console.log('done generating csv1');
 }
 
 csvGen(1);
-// csvGen(2);
-// csvGen(3);
-// csvGen(4);
-// csvGen(5);
-// csvGen(6);
-
-/*
-node --max-old-space-size=8192 database/csvgen.js
-
-delete from chairs;
-select count(*) from chairs;
-select * from chairs where id = 9999999
-
-
-LOAD DATA LOCAL INFILE '/Users/jbishow/Documents/Javascripts/Hack Reactor/System Design Capstone/component-cp/database/csv/data1.csv' INTO TABLE chairs FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 ROWS;
-
-LOAD DATA LOCAL INFILE '/Users/jbishow/Documents/Javascripts/Hack Reactor/System Design Capstone/component-cp/database/csv/data1.csv'
-INTO TABLE chairs
-FIELDS TERMINATED BY ','
-ENCLOSED BY '"'
-LINES TERMINATED BY '\n'
-IGNORE 1 ROWS;
-
-LOAD DATA LOCAL INFILE '/Users/jbishow/Documents/Javascripts/Hack Reactor/System Design Capstone/component-cp/database/csv/data.csv'
-INTO TABLE chairs
-FIELDS TERMINATED BY ','
-LINES TERMINATED BY '\n'
-IGNORE 1 ROWS;
-alter table chairs add index collection_id (collection_id);
-
-
-cat *.csv >data.csv
-*/

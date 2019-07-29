@@ -1,4 +1,4 @@
-const connection = require('./index')
+const connection = require('./mysql/index')
 
 insertCsv = () => { 
   const queryStr = `LOAD DATA LOCAL INFILE '/Users/jbishow/Documents/Javascripts/Hack Reactor/System Design Capstone/component-cp/database/csv/data.csv' INTO TABLE chairs FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 ROWS;`

@@ -5,10 +5,13 @@
   "main": "./server/index.js",
   "scripts": {
     "start": "nodemon server/index.js",
-    "generatecsv": "node --max-old-space-size=16384 database/csvgen/csvgen1.js; node --max-old-space-size=16384 database/csvgen/csvgen2.js; node --max-old-space-size=16384 database/csvgen/csvgen3.js; node --max-old-space-size=16384 database/csvgen/csvgen4.js; node --max-old-space-size=16384 database/csvgen/csvgen5.js",
+    "csvgen": "node --max-old-space-size=16384 database/csvgen/csvgen1.js; node --max-old-space-size=16384 database/csvgen/csvgen2.js; node --max-old-space-size=16384 database/csvgen/csvgen3.js; node --max-old-space-size=16384 database/csvgen/csvgen4.js; node --max-old-space-size=16384 database/csvgen/csvgen5.js",
     "cat": "cat database/csv/*.csv >database/csv/data.csv",
-    "insertcsv": "node database/insertCsv.js",
-    "seed": "npm run generatecsv; npm run cat; npm run insertcsv",
+    "create": "npm run csvgen; npm run cat",
+    "seed-mysql": "node database/insertCsvSql.js",
+    "seed-mongo": "mongoimport --db collection --collection chairs --type csv --headerline --file database/csv/data.csv",
+    "fullseed-mysql": "npm run create; npm run seed-mysql",
+    "fullseed-mongo": "npm run create; npm run seed-mongo",
     "build": "webpack -d --watch"
   },
   "repository": {
@@ -26,6 +29,7 @@
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
     "jest": "^24.8.0",
     "lodash": "^4.17.14",
+    "morgan": "^1.9.1",
     "nodemon": "^1.19.1",
     "webpack": "^4.20.0",
     "webpack-cli": "^3.3.5"
@@ -38,7 +42,7 @@
     "diff": "^4.0.1",
     "express": "^4.17.1",
     "faker": "^4.1.0",
-    "morgan": "^1.9.1",
+    "mongoose": "^5.6.7",
     "mysql": "^2.17.1",
     "mysql2": "^1.6.5",
     "react": "^16.8.6",
