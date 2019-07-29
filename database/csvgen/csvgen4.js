@@ -1,7 +1,6 @@
 const fs = require('fs');
 const csvWriter = require('csv-write-stream');
 const faker = require('faker');
-// var writer = csvWriter();
 var writer = csvWriter({ sendHeaders: false });
 
 const csvGen = (x) => {
@@ -23,9 +22,4 @@ const csvGen = (x) => {
   console.log('done generating csv');
 }
 
-// csvGen(1);
-// csvGen(2);
-// csvGen(3);
 csvGen(4);
-// csvGen(5);
-// csvGen(6);
