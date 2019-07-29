@@ -134,6 +134,9 @@ started by including index in mongoose schema creation,
 queries by collection_id take 1ms for late entries and 0ms for early ones.
   > db.chairs.find({collection_id:10000000}).pretty().explain("executionStats")
 
+//July 28
+had trouble installing artillery globally (or at all)
+solution https://github.com/artilleryio/artillery/issues/548
 
-
-
+initial artillery tests
+artillery quick --count 10 -n 20 http://localhost:3002/collection/mongo/10
