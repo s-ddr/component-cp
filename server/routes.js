@@ -3,14 +3,14 @@ const router = require('express').Router();
 //comment out when testing mongo
 const sqlControllers = require('./sqlController');
 router
-.route('/collection/sql/:id')
-.get(sqlControllers.get)
+  .route('/collection/sql/:id')
+  .get(sqlControllers.get)
 
 //comment out when testing mysql
 const mongoControllers = require('./monogoController')
 router
-.route('/collection/mongo/:id')
-.get(mongoControllers.get)
+  .route('/collection/mongo/:id')
+  .get(mongoControllers.get)
 
 // router.route('/products-cp/:id').get(mongoControllers.get)
 
