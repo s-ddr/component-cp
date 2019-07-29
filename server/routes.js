@@ -1,11 +1,15 @@
 const router = require('express').Router();
+
+
+//comment out when testing mongo
 const sqlControllers = require('./sqlController');
-const mongoControllers = require('./monogoController')
-
 router
-  .route('/collection/sql/:id')
-  .get(sqlControllers.get)
+.route('/collection/sql/:id')
+.get(sqlControllers.get)
 
+
+//comment out when testing mysql
+const mongoControllers = require('./monogoController')
 router
   .route('/collection/mongo/:id')
   .get(mongoControllers.get)
