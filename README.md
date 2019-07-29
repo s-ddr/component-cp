@@ -1,6 +1,6 @@
 # Reccomendations Carousel (component-cp)
 
-![Image of application](https://i.imgur.com/tHZjtfQ.png)
+![Image of application](https://i.imgur.com/8s8Wc6U.gif)
 
 ## Related Projects
 
