@@ -25,8 +25,13 @@ getChairByNativeId = (id) => {
   return connection.query(queryStr)
 }
 
+postChair = (chair) => {
+  return Chairs.create(chair)
+}
+
 module.exports = {
   getChairById,
   getChairByIdRaw,
-  getChairByNativeId
+  getChairByNativeId,
+  postChair
 }
