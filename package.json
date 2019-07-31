@@ -4,7 +4,7 @@
   "description": "Related Searches and Footer module",
   "main": "./server/index.js",
   "scripts": {
-    "start": "nodemon server/index.js",
+    "start": "node server/index.js",
     "csvgen": "node --max-old-space-size=16384 database/csvgen/csvgen1.js; node --max-old-space-size=16384 database/csvgen/csvgen2.js; node --max-old-space-size=16384 database/csvgen/csvgen3.js; node --max-old-space-size=16384 database/csvgen/csvgen4.js; node --max-old-space-size=16384 database/csvgen/csvgen5.js",
     "cat": "cat database/csv/*.csv >database/csv/data.csv",
     "create": "npm run csvgen; npm run cat",
@@ -12,7 +12,9 @@
     "seed-mongo": "mongoimport --db collection --collection chairs --type csv --headerline --file database/csv/data.csv",
     "fullseed-mysql": "npm run create; npm run seed-mysql",
     "fullseed-mongo": "npm run create; npm run seed-mongo",
-    "build": "webpack -d --watch"
+    "build": "webpack -d --watch",
+    "test": "jest",
+    "launch": "open http://localhost:3002/"
   },
   "repository": {
     "type": "git",
