@@ -5,6 +5,7 @@ const Chairs = connection.define('chairs', {
 	name: {
 		type: Sequelize.STRING,
 		required: true,
+		allowNull: false
 	},
 	collection_id : {
 		type: Sequelize.INTEGER,
@@ -13,7 +14,8 @@ const Chairs = connection.define('chairs', {
 	},
 	url: {
 		type: Sequelize.STRING,
-		required: true
+		required: true,
+		allowNull: false
 	},
 	max_price: {
 		type: Sequelize.INTEGER,
@@ -26,12 +28,12 @@ const Chairs = connection.define('chairs', {
 		allowNull: true
 	},
 	limited_offer: {
-		type: Sequelize.BOOLEAN,
+		type: Sequelize.STRING,
 		required: true,
 		allowNull: false
 	},
 	on_sale: {
-		type: Sequelize.BOOLEAN,
+		type: Sequelize.STRING,
 		required: true,
 		allowNull: false
 	}
