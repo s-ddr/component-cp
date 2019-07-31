@@ -1,0 +1,17 @@
+config:
+  target: 'http://localhost:3002'
+  phases:
+    - duration: 10
+      arrivalRate: 1
+      rampTo: 5
+    - duration: 50
+      arrivalRate: 5
+  processor: "./createTestID.js"
+scenarios:
+  - flow:
+    - loop:
+      - function: "createTestID"
+      - post:
+          url: "/collection/mongo/"
+      # - log: "get {{id}}"
+      count: 400  
