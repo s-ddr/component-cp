@@ -8,6 +8,7 @@
     "csvgen": "node --max-old-space-size=16384 database/csvgen/csvgen1.js; node --max-old-space-size=16384 database/csvgen/csvgen2.js; node --max-old-space-size=16384 database/csvgen/csvgen3.js; node --max-old-space-size=16384 database/csvgen/csvgen4.js; node --max-old-space-size=16384 database/csvgen/csvgen5.js",
     "cat": "cat database/csv/*.csv >database/csv/data.csv",
     "create": "npm run csvgen; npm run cat",
+    "stream": "node --max-old-space-size=8192 database/csvgen/testCsvGen.js",
     "seed-mysql": "node database/insertCsvSql.js",
     "seed-mongo": "mongoimport --db collection --collection chairs --type csv --headerline --file database/csv/data.csv",
     "fullseed-mysql": "npm run create; npm run seed-mysql",
