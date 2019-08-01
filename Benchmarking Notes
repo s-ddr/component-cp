@@ -139,4 +139,71 @@ had trouble installing artillery globally (or at all)
 solution https://github.com/artilleryio/artillery/issues/548
 
 initial artillery tests
-artillery quick --count 10 -n 20 http://localhost:3002/collection/mongo/10
+artillery quick -r 1000 -d 60 http://localhost:3002/collection/sql/99999997
+
+//July 39-31
+//search by name or range of max_price
+  //compare indexing types btree hash.
+//sql
+real	16m13.816s
+user	16m9.049s
+sys	4m14.674s
+
+//with three indexes
+2019-07-30T14:08:58.862-0700
+2019-07-30T14:40:29.955-0700
+
+db.chairs.find({max_price:10, min_price:{$gt:9}}).limit(2).pretty()
+
+//with one index
+2019-07-30T15:34:19.848-0700
+2019-07-30T15:50:30.280-0700
+real	16m13.816s
+user	16m9.049s
+sys	4m14.674s
+
+//use gitlog to track indexing times
+db.adminCommand( { getLog : "global" } )
+
+//with no index  10m56s
+2019-07-31T10:51:57.948-0700	connected to: localhost
+2019-07-31T11:02:53.952-0700
+real	10m56.378s
+user	14m34.379s
+sys	3m42.015s
+
+//and adding an index 2m36s
+2019-07-31T11:24:56.630-0700 I INDEX
+2019-07-31T11:27:32.331-0700
+
+db.chairs.find({$or : [{collection_id:{$lt:5}},{collection_id:{$gt:9999996}}]})
+
+
+*~~~~~~MongoDB / GET~~~~~~*
+
+query to get collection of reccomended items for a given item_id
+localhost:3002/collection/mongo/:id
+chairs.find({ collection_id: id })
+
+localhost:3002/collection/mongo/1813208   |   Time: 6.98ms
+
+localhost:3002/collection/mongo/10000000  |   Time: 5.53ms
+
+localhost:3002/collection/mongo/9000010   |   Time: 5.51ms
+
+localhost:3002/collection/mongo/10        |   Time: 5.31ms
+
+*~~~~~~MySQL . GET~~~~~~*
+
+query to get collection of reccomended items for a given item_id
+localhost:3002/collection/sql/:id
+SELECT * FROM chairs WHERE collection_id=${+id}
+
+localhost:3002/collection/sql/1813208   |   Time: 17.72ms
+
+localhost:3002/collection/sql/10000000  |   Time: 17.24ms
+
+localhost:3002/collection/sql/9000010   |   Time: 17.29ms 
+
+localhost:3002/collection/sql/10        |   Time: 9.68ms
+
