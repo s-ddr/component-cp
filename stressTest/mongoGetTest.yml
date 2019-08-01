@@ -1,17 +1,17 @@
 config:
   target: 'http://localhost:3002'
   phases:
-    - duration: 10
-      arrivalRate: 1
-      rampTo: 5
-    - duration: 50
-      arrivalRate: 5
+    - duration: 30
+      arrivalRate: 10
+      rampTo: 100
+    - duration: 60
+      arrivalRate: 100
   processor: "./createTestID.js"
 scenarios:
   - flow:
-    - loop:
+    # - loop:
       - function: "createTestID"
       - get:
           url: "/collection/mongo/{{id}}"
       # - log: "get {{id}}"
-      count: 400
+      # count: 400
