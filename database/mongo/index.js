@@ -17,4 +17,4 @@ const chairSchema = mongoose.Schema(
 
 const Chair = mongoose.model('Chair', chairSchema);
 
-module.exports = Chairs
+module.exports = Chair
