@@ -207,3 +207,10 @@ localhost:3002/collection/sql/9000010   |   Time: 17.29ms
 
 localhost:3002/collection/sql/10        |   Time: 9.68ms
 
+//new csv generation
+  ~70M in 3m53.941s
+//seed mongo in 23m16.8s with index pre-established
+//seed mongo in 16m57.645s without index
+
+
+//seed and index mysql	8m43.709s
