@@ -257,3 +257,10 @@ Summary report @ 15:09:52(-0700) 2019-08-01
     0: 300 (100%)
   Codes:
     200: 600000
+
+//Aug 2 Setting up EC2 instance
+
+to ssh into terminal
+
+ssh -i /Users/jbishow/Documents/AmazonAWS/jeremy.pem ec2-user@ec2-52-53-232-190.us-west-1.compute.amazonaws.com
+
