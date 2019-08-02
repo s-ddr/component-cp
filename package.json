@@ -5,17 +5,14 @@
   "main": "./server/index.js",
   "scripts": {
     "start": "node server/index.js",
-    "csvgen": "node --max-old-space-size=16384 database/csvgen/csvgen1.js; node --max-old-space-size=16384 database/csvgen/csvgen2.js; node --max-old-space-size=16384 database/csvgen/csvgen3.js; node --max-old-space-size=16384 database/csvgen/csvgen4.js; node --max-old-space-size=16384 database/csvgen/csvgen5.js",
-    "cat": "cat database/csv/*.csv >database/csv/data.csv",
-    "create": "npm run csvgen; npm run cat",
-    "stream": "node --max-old-space-size=8192 database/csvgen/testCsvGen.js",
-    "seed-mysql": "node database/insertCsvSql.js",
-    "seed-mongo": "mongoimport --db collection --collection chairs --type csv --headerline --file database/csv/data.csv",
-    "fullseed-mysql": "npm run create; npm run seed-mysql",
-    "fullseed-mongo": "npm run create; npm run seed-mongo",
-    "build": "webpack -d --watch",
     "test": "jest",
-    "launch": "open http://localhost:3002/"
+    "launch": "open http://localhost:3002/",
+    "build": "webpack -d --watch",
+    "create-seed": "node --max-old-space-size=8192 database/csvgen/csvGen.js",
+    "seed-mongo": "mongoimport --db collection --collection chairs --type csv --headerline --file database/csv/data.csv",
+    "fullseed-mongo": "npm run create; npm run seed-mongo",
+    "seed-mysql": "node database/insertCsvSql.js",
+    "fullseed-mysql": "npm run create; npm run seed-mysql"
   },
   "repository": {
     "type": "git",
@@ -48,6 +45,7 @@
     "mongoose": "^5.6.7",
     "mysql": "^2.17.1",
     "mysql2": "^1.6.5",
+    "newrelic": "^5.11.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-id-swiper": "^2.3.1",

@@ -1,2 +1,5 @@
 node_modules
 database/csv
+newrelic.js
+newrelic_agent.log
+jeremy.pem

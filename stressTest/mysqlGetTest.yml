@@ -9,5 +9,5 @@ scenarios:
     - loop:
       - function: "createTestID"
       - get:
-          url: "/collection/mongo/{{id}}"
+          url: "/collection/sql/{{id}}"
       count: 2000
