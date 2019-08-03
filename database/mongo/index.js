@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/collection', { useNewUrlParser: true })
+mongoose.connect('MONGOURI', { useNewUrlParser: true })
   .then(() => console.log('connected to mongo'))
   .catch(() => console.log('err'));
 
