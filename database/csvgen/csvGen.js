@@ -28,6 +28,15 @@ function write() {
       i += 1;
       col += 1;
       if (col % 10000000 === 0) { console.log(i, 'chairs saved in', col, 'collections') }
+      if (col === 5000000) {
+        console.log('halfway there')
+      }
+      if (col === 2500000) {
+        console.log('one-quarter generated')
+      }
+      if (col === 7500000) {
+        console.log('three-quarters generated')
+      }
       if (col === 10000000) {
         let len = Math.ceil(Math.random() * 3) + 5
         csvStream.write(makeChair(i, len, col), 'utf8', () => { csvStream.end() });
